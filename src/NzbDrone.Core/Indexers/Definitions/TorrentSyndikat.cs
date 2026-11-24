@@ -2,14 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using FluentValidation;
-using Newtonsoft.Json.Linq;
 using NLog;
+using NzbDrone.Common.Extensions;
 using NzbDrone.Common.Http;
+using NzbDrone.Common.Serializer;
 using NzbDrone.Core.Annotations;
 using NzbDrone.Core.Configuration;
+using NzbDrone.Core.Indexers.Exceptions;
 using NzbDrone.Core.Indexers.Settings;
 using NzbDrone.Core.IndexerSearch.Definitions;
 using NzbDrone.Core.Messaging.Events;
@@ -22,12 +26,18 @@ namespace NzbDrone.Core.Indexers.Definitions
     public class TorrentSyndikat : TorrentIndexerBase<TorrentSyndikatSettings>
     {
         public override string Name => "TorrentSyndikat";
-        public override string[] IndexerUrls => new[] { "https://torrent-syndikat.org/" };
+        public override string[] IndexerUrls => new[]
+        {
+            "https://torrent-syndikat.org/",
+            "https://tee-stube.org/"
+        };
         public override string Description => "A German general tracker";
         public override string Language => "de-DE";
         public override Encoding Encoding => Encoding.UTF8;
         public override IndexerPrivacy Privacy => IndexerPrivacy.Private;
         public override IndexerCapabilities Capabilities => SetCapabilities();
+        public override bool SupportsPagination => true;
+        public override int PageSize => 30;
 
         public TorrentSyndikat(IIndexerHttpClient httpClient, IEventAggregator eventAggregator, IIndexerStatusService indexerStatusService, IConfigService configService, Logger logger)
             : base(httpClient, eventAggregator, indexerStatusService, configService, logger)
@@ -41,20 +51,22 @@ namespace NzbDrone.Core.Indexers.Definitions
 
         public override IParseIndexerResponse GetParser()
         {
-            return new TorrentSyndikatParser(Settings, Capabilities.Categories);
+            return new TorrentSyndikatParser(Settings, Capabilities.Categories, _logger);
         }
 
         private IndexerCapabilities SetCapabilities()
         {
             var caps = new IndexerCapabilities
             {
+                LimitsDefault = PageSize,
+                LimitsMax = PageSize,
                 TvSearchParams = new List<TvSearchParam>
                                    {
                                        TvSearchParam.Q, TvSearchParam.Season, TvSearchParam.Ep
                                    },
                 MovieSearchParams = new List<MovieSearchParam>
                                    {
-                                       MovieSearchParam.Q, MovieSearchParam.ImdbId
+                                       MovieSearchParam.Q, MovieSearchParam.ImdbId, MovieSearchParam.TmdbId
                                    },
                 MusicSearchParams = new List<MusicSearchParam>
                                    {
@@ -63,53 +75,53 @@ namespace NzbDrone.Core.Indexers.Definitions
                 BookSearchParams = new List<BookSearchParam>
                                    {
                                        BookSearchParam.Q
-                                   }
+                                   },
+                Flags = new List<IndexerFlag>
+                {
+                    IndexerFlag.Scene
+                }
             };
 
-            caps.Categories.AddCategoryMapping(2, NewznabStandardCategory.PC, "Apps / Windows");
-            caps.Categories.AddCategoryMapping(13, NewznabStandardCategory.PC, "Apps / Linux");
-            caps.Categories.AddCategoryMapping(4, NewznabStandardCategory.PCMac, "Apps / MacOS");
-            caps.Categories.AddCategoryMapping(6, NewznabStandardCategory.PC, "Apps / Misc");
+            // Tracker categories are "cat/subCat", optionally suffixed with a variant derived from the release
+            // Variants have no description, as they are not tracker categories and map 1:1 to a standard category
+            caps.Categories.AddCategoryMapping("apps/awindows", NewznabStandardCategory.PC0day, "Apps / Windows");
+            caps.Categories.AddCategoryMapping("apps/alinux", NewznabStandardCategory.PC, "Apps / Linux");
+            caps.Categories.AddCategoryMapping("apps/amacos", NewznabStandardCategory.PCMac, "Apps / MacOS");
 
-            caps.Categories.AddCategoryMapping(50, NewznabStandardCategory.PCGames, "Spiele / Windows");
-            caps.Categories.AddCategoryMapping(51, NewznabStandardCategory.PCGames, "Spiele / MacOS");
-            caps.Categories.AddCategoryMapping(52, NewznabStandardCategory.PCGames, "Spiele / Linux");
-            caps.Categories.AddCategoryMapping(8, NewznabStandardCategory.ConsoleOther, "Spiele / Playstation");
-            caps.Categories.AddCategoryMapping(7, NewznabStandardCategory.ConsoleOther, "Spiele / Nintendo");
-            caps.Categories.AddCategoryMapping(32, NewznabStandardCategory.ConsoleOther, "Spiele / XBOX");
+            caps.Categories.AddCategoryMapping("games/gwindows", NewznabStandardCategory.PCGames, "Spiele / Windows");
+            caps.Categories.AddCategoryMapping("games/gmacos", NewznabStandardCategory.PCGames, "Spiele / MacOS");
+            caps.Categories.AddCategoryMapping("games/glinux", NewznabStandardCategory.PCGames, "Spiele / Linux");
+            caps.Categories.AddCategoryMapping("games/playstation", NewznabStandardCategory.ConsoleOther, "Spiele / Playstation");
+            caps.Categories.AddCategoryMapping("games/nintendo", NewznabStandardCategory.ConsoleOther, "Spiele / Nintendo");
+            caps.Categories.AddCategoryMapping("games/xbox", NewznabStandardCategory.ConsoleOther, "Spiele / XBOX");
 
-            caps.Categories.AddCategoryMapping(42, NewznabStandardCategory.MoviesUHD, "Filme / 2160p");
-            caps.Categories.AddCategoryMapping(9, NewznabStandardCategory.MoviesHD, "Filme / 1080p");
-            caps.Categories.AddCategoryMapping(20, NewznabStandardCategory.MoviesHD, "Filme / 720p");
-            caps.Categories.AddCategoryMapping(10, NewznabStandardCategory.MoviesSD, "Filme / SD");
+            caps.Categories.AddCategoryMapping("video/movie", NewznabStandardCategory.Movies, "Video / Filme");
+            caps.Categories.AddCategoryMapping("video/movie/uhd", NewznabStandardCategory.MoviesUHD);
+            caps.Categories.AddCategoryMapping("video/movie/hd", NewznabStandardCategory.MoviesHD);
+            caps.Categories.AddCategoryMapping("video/movie/sd", NewznabStandardCategory.MoviesSD);
+            caps.Categories.AddCategoryMapping("video/movie/foreign", NewznabStandardCategory.MoviesForeign);
+            caps.Categories.AddCategoryMapping("video/series", NewznabStandardCategory.TV, "Video / Serien");
+            caps.Categories.AddCategoryMapping("video/series/uhd", NewznabStandardCategory.TVUHD);
+            caps.Categories.AddCategoryMapping("video/series/hd", NewznabStandardCategory.TVHD);
+            caps.Categories.AddCategoryMapping("video/series/sd", NewznabStandardCategory.TVSD);
+            caps.Categories.AddCategoryMapping("video/series/foreign", NewznabStandardCategory.TVForeign);
+            caps.Categories.AddCategoryMapping("video/sports", NewznabStandardCategory.TVSport, "Video / Sport");
+            caps.Categories.AddCategoryMapping("video/vmusic", NewznabStandardCategory.AudioVideo, "Video / Musik");
 
-            caps.Categories.AddCategoryMapping(43, NewznabStandardCategory.TVUHD, "Serien / 2160p");
-            caps.Categories.AddCategoryMapping(53, NewznabStandardCategory.TVHD, "Serien / 1080p");
-            caps.Categories.AddCategoryMapping(54, NewznabStandardCategory.TVHD, "Serien / 720p");
-            caps.Categories.AddCategoryMapping(15, NewznabStandardCategory.TVSD, "Serien / SD");
-            caps.Categories.AddCategoryMapping(30, NewznabStandardCategory.TVSport, "Serien / Sport");
+            caps.Categories.AddCategoryMapping("audio/amusic", NewznabStandardCategory.Audio, "Audio / Musik");
+            caps.Categories.AddCategoryMapping("audio/amusic/flac", NewznabStandardCategory.AudioLossless);
+            caps.Categories.AddCategoryMapping("audio/amusic/mp3", NewznabStandardCategory.AudioMP3);
+            caps.Categories.AddCategoryMapping("audio/audiobook", NewznabStandardCategory.AudioAudiobook, "Audio / Hörbücher");
+            caps.Categories.AddCategoryMapping("audio/podcast", NewznabStandardCategory.AudioOther, "Audio / Podcasts");
 
-            caps.Categories.AddCategoryMapping(44, NewznabStandardCategory.TVUHD, "Serienpacks / 2160p");
-            caps.Categories.AddCategoryMapping(55, NewznabStandardCategory.TVHD, "Serienpacks / 1080p");
-            caps.Categories.AddCategoryMapping(56, NewznabStandardCategory.TVHD, "Serienpacks / 720p");
-            caps.Categories.AddCategoryMapping(27, NewznabStandardCategory.TVSD, "Serienpacks / SD");
+            caps.Categories.AddCategoryMapping("ebook/novel", NewznabStandardCategory.BooksEBook, "eBook / Belletristik");
+            caps.Categories.AddCategoryMapping("ebook/nfiction", NewznabStandardCategory.BooksEBook, "eBook / Sachbücher");
+            caps.Categories.AddCategoryMapping("ebook/comic", NewznabStandardCategory.BooksComics, "eBook / Comics");
+            caps.Categories.AddCategoryMapping("ebook/npaper", NewznabStandardCategory.BooksMags, "eBook / Zeitungen");
+            caps.Categories.AddCategoryMapping("ebook/magazine", NewznabStandardCategory.BooksMags, "eBook / Magazine");
 
-            caps.Categories.AddCategoryMapping(24, NewznabStandardCategory.AudioLossless, "Audio / Musik / FLAC");
-            caps.Categories.AddCategoryMapping(25, NewznabStandardCategory.AudioMP3, "Audio / Musik / MP3");
-            caps.Categories.AddCategoryMapping(35, NewznabStandardCategory.AudioOther, "Audio / Other");
-            caps.Categories.AddCategoryMapping(18, NewznabStandardCategory.AudioAudiobook, "Audio / aBooks");
-            caps.Categories.AddCategoryMapping(33, NewznabStandardCategory.AudioVideo, "Audio / Videos");
-
-            caps.Categories.AddCategoryMapping(17, NewznabStandardCategory.Books, "Misc / eBooks");
-            caps.Categories.AddCategoryMapping(5, NewznabStandardCategory.PCMobileOther, "Misc / Mobile");
-            caps.Categories.AddCategoryMapping(39, NewznabStandardCategory.Other, "Misc / Bildung");
-
-            caps.Categories.AddCategoryMapping(36, NewznabStandardCategory.TVForeign, "Englisch / Serien");
-            caps.Categories.AddCategoryMapping(57, NewznabStandardCategory.TVForeign, "Englisch / Serienpacks");
-            caps.Categories.AddCategoryMapping(37, NewznabStandardCategory.MoviesForeign, "Englisch / Filme");
-            caps.Categories.AddCategoryMapping(47, NewznabStandardCategory.Books, "Englisch / eBooks");
-            caps.Categories.AddCategoryMapping(48, NewznabStandardCategory.Other, "Englisch / Bildung");
-            caps.Categories.AddCategoryMapping(49, NewznabStandardCategory.TVSport, "Englisch / Sport");
+            caps.Categories.AddCategoryMapping("misc/misc", NewznabStandardCategory.Other, "Misc / Misc");
+            caps.Categories.AddCategoryMapping("misc/grabbel", NewznabStandardCategory.OtherMisc, "Misc / Grabbelkiste");
 
             return caps;
         }
@@ -120,86 +132,141 @@ namespace NzbDrone.Core.Indexers.Definitions
         public TorrentSyndikatSettings Settings { get; set; }
         public IndexerCapabilities Capabilities { get; set; }
 
-        private IEnumerable<IndexerRequest> GetPagedRequests(string term, int[] categories, string imdbId = null)
+        private static readonly Regex SeasonRegex = new(@"(^|\s)(s\d{2})(\s|$)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        private IndexerPageableRequestChain GetRequestChain(SearchCriteriaBase searchCriteria, string term, string uniqueId = null)
         {
-            var searchString = term;
-            var queryCollection = new NameValueCollection { { "apikey", Settings.ApiKey } };
+            var pageableRequests = new IndexerPageableRequestChain();
 
-            queryCollection.Add("limit", "50"); // Default 30
-            queryCollection.Add("ponly", Settings.ProductsOnly ? "true" : "false");
-            foreach (var releaseType in Settings.ReleaseTypes)
+            if (uniqueId != null)
             {
-                queryCollection.Add("release_type", ((TorrentSyndikatReleaseTypes)releaseType).ToString().Replace("_", "-"));
+                // uniqueId.php pages by the id of the last torrent instead of a page number, so only the first page can be requested
+                // It does not support any filters, these are applied by the parser
+                if (searchCriteria.Offset is not > 0)
+                {
+                    pageableRequests.Add(new[] { GetRequest("uniqueId.php", new NameValueCollection { { "id", uniqueId } }) });
+                }
+
+                return pageableRequests;
             }
 
-            if (imdbId != null)
+            // releaseType, cat and subCat only accept a single value, so every combination gets its own request to keep the pages full
+            var releaseTypes = Settings.ReleaseTypes.Select(TorrentSyndikatParser.ReleaseTypeName).Distinct().ToList();
+            if (releaseTypes.Count == Enum.GetValues<TorrentSyndikatReleaseTypes>().Length)
             {
-                queryCollection.Add("imdbId", imdbId);
-            }
-            else if (!string.IsNullOrWhiteSpace(searchString))
-            {
-                // Suffix the first occurrence of `s01` surrounded by whitespace with *
-                // That way we also search for single episodes in a whole season search
-                var regex = new Regex(@"(^|\s)(s\d{2})(\s|$)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-                queryCollection.Add("searchstring", regex.Replace(searchString.Trim(), @"$1$2*$3"));
+                releaseTypes.Clear();
             }
 
-            var cats = string.Join(",", Capabilities.Categories.MapTorznabCapsToTrackers(categories));
-            if (!string.IsNullOrEmpty(cats))
+            var categoryFilters = GetCategoryFilters(searchCriteria.Categories);
+
+            foreach (var releaseType in releaseTypes.DefaultIfEmpty())
             {
-                queryCollection.Add("cats", cats);
+                foreach (var categoryFilter in categoryFilters.DefaultIfEmpty())
+                {
+                    var parameters = new NameValueCollection();
+
+                    if (releaseType != null)
+                    {
+                        parameters.Add("releaseType", releaseType);
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        // Suffix the first occurrence of `s01` surrounded by whitespace with *
+                        // That way we also search for single episodes in a whole season search
+                        parameters.Add("searchTerm", SeasonRegex.Replace(term.Trim(), @"$1$2*$3"));
+                    }
+
+                    if (categoryFilter.Key != null)
+                    {
+                        parameters.Add(categoryFilter.Key, categoryFilter.Value);
+                    }
+
+                    if (searchCriteria.Limit is > 0 && searchCriteria.Offset is > 0)
+                    {
+                        var page = (int)(searchCriteria.Offset / searchCriteria.Limit) + 1;
+                        parameters.Add("pageId", page.ToString());
+                    }
+
+                    pageableRequests.Add(new[] { GetRequest("all.php", parameters) });
+                }
             }
 
-            var searchUrl = string.Format("{0}/api_9djWe8Tb2NE3p6opyqnh/v1/browse.php?{1}", Settings.BaseUrl.TrimEnd('/'), queryCollection.GetQueryString());
+            return pageableRequests;
+        }
 
-            var request = new IndexerRequest(searchUrl, HttpAccept.Html);
+        private List<KeyValuePair<string, string>> GetCategoryFilters(int[] categories)
+        {
+            var trackerCats = Capabilities.Categories.GetTrackerCategories().Select(c => c.Split('/')).ToList();
+            var requestedCats = Capabilities.Categories.MapTorznabCapsToTrackers(categories).Select(c => c.Split('/')).ToList();
+            var filters = new List<KeyValuePair<string, string>>();
 
-            yield return request;
+            foreach (var cat in requestedCats.GroupBy(c => c[0]))
+            {
+                var subCats = cat.Select(c => c[1]).Distinct().ToList();
+
+                if (subCats.Count == trackerCats.Where(c => c[0] == cat.Key).Select(c => c[1]).Distinct().Count())
+                {
+                    filters.Add(new KeyValuePair<string, string>("cat", cat.Key));
+                }
+                else
+                {
+                    filters.AddRange(subCats.Select(subCat => new KeyValuePair<string, string>("subCat", subCat)));
+                }
+            }
+
+            // Every category requested is the same as no filter at all
+            if (filters.Count(f => f.Key == "cat") == trackerCats.Select(c => c[0]).Distinct().Count())
+            {
+                filters.Clear();
+            }
+
+            return filters;
+        }
+
+        private IndexerRequest GetRequest(string endpoint, NameValueCollection parameters)
+        {
+            var queryCollection = new NameValueCollection { { "apiKey", Settings.ApiKey } };
+            queryCollection.Add(parameters);
+
+            var searchUrl = $"{Settings.BaseUrl.TrimEnd('/')}/api_9djWe8Tb2NE3p6opyqnh/v2/torrents/{endpoint}?{queryCollection.GetQueryString()}";
+
+            return new IndexerRequest(searchUrl, HttpAccept.Json);
         }
 
         public IndexerPageableRequestChain GetSearchRequests(MovieSearchCriteria searchCriteria)
         {
-            var pageableRequests = new IndexerPageableRequestChain();
+            string uniqueId = null;
+            if (searchCriteria.ImdbId.IsNotNullOrWhiteSpace())
+            {
+                uniqueId = $"imdb:{searchCriteria.ImdbId}";
+            }
+            else if (searchCriteria.TmdbId is > 0)
+            {
+                uniqueId = $"tmdb:{searchCriteria.TmdbId}";
+            }
 
-            pageableRequests.Add(GetPagedRequests(string.Format("{0}", searchCriteria.SanitizedSearchTerm), searchCriteria.Categories, searchCriteria.ImdbId));
-
-            return pageableRequests;
+            return GetRequestChain(searchCriteria, searchCriteria.SanitizedSearchTerm, uniqueId);
         }
 
         public IndexerPageableRequestChain GetSearchRequests(MusicSearchCriteria searchCriteria)
         {
-            var pageableRequests = new IndexerPageableRequestChain();
-
-            pageableRequests.Add(GetPagedRequests(string.Format("{0}", searchCriteria.SanitizedSearchTerm), searchCriteria.Categories));
-
-            return pageableRequests;
+            return GetRequestChain(searchCriteria, searchCriteria.SanitizedSearchTerm);
         }
 
         public IndexerPageableRequestChain GetSearchRequests(TvSearchCriteria searchCriteria)
         {
-            var pageableRequests = new IndexerPageableRequestChain();
-
-            pageableRequests.Add(GetPagedRequests(string.Format("{0}", searchCriteria.SanitizedTvSearchString), searchCriteria.Categories, searchCriteria.ImdbId));
-
-            return pageableRequests;
+            return GetRequestChain(searchCriteria, searchCriteria.SanitizedTvSearchString);
         }
 
         public IndexerPageableRequestChain GetSearchRequests(BookSearchCriteria searchCriteria)
         {
-            var pageableRequests = new IndexerPageableRequestChain();
-
-            pageableRequests.Add(GetPagedRequests(string.Format("{0}", searchCriteria.SanitizedSearchTerm), searchCriteria.Categories));
-
-            return pageableRequests;
+            return GetRequestChain(searchCriteria, searchCriteria.SanitizedSearchTerm);
         }
 
         public IndexerPageableRequestChain GetSearchRequests(BasicSearchCriteria searchCriteria)
         {
-            var pageableRequests = new IndexerPageableRequestChain();
-
-            pageableRequests.Add(GetPagedRequests(string.Format("{0}", searchCriteria.SanitizedSearchTerm), searchCriteria.Categories));
-
-            return pageableRequests;
+            return GetRequestChain(searchCriteria, searchCriteria.SanitizedSearchTerm);
         }
 
         public Func<IDictionary<string, string>> GetCookies { get; set; }
@@ -210,27 +277,61 @@ namespace NzbDrone.Core.Indexers.Definitions
     {
         private readonly TorrentSyndikatSettings _settings;
         private readonly IndexerCapabilitiesCategories _categories;
+        private readonly Logger _logger;
 
-        public TorrentSyndikatParser(TorrentSyndikatSettings settings, IndexerCapabilitiesCategories categories)
+        public TorrentSyndikatParser(TorrentSyndikatSettings settings, IndexerCapabilitiesCategories categories, Logger logger)
         {
             _settings = settings;
             _categories = categories;
+            _logger = logger;
+        }
+
+        public static string ReleaseTypeName(int releaseType)
+        {
+            return ((TorrentSyndikatReleaseTypes)releaseType).ToString().Replace("_", "").ToLowerInvariant();
         }
 
         public IList<ReleaseInfo> ParseResponse(IndexerResponse indexerResponse)
         {
-            var torrentInfos = new List<ReleaseInfo>();
+            var httpResponse = indexerResponse.HttpResponse;
 
-            // TODO Deserialize to TorrentSyndikatResponse Type
-            var jsonContent = JObject.Parse(indexerResponse.Content);
-
-            foreach (var row in jsonContent.Value<JArray>("rows"))
+            if (httpResponse.StatusCode != HttpStatusCode.OK)
             {
-                var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                STJson.TryDeserialize<TorrentSyndikatErrorResponse>(httpResponse.ResponseData, out var error);
+                var message = error?.Msg ?? httpResponse.StatusCode.ToString();
 
-                var id = row.Value<string>("id");
-                var details = _settings.BaseUrl + "details.php?id=" + id;
-                var seeders = row.Value<int>("seeders");
+                if (httpResponse.StatusCode is HttpStatusCode.Unauthorized or HttpStatusCode.Forbidden)
+                {
+                    throw new IndexerAuthException($"API request failed: {message}");
+                }
+
+                throw new IndexerException(indexerResponse, $"Unexpected response status {httpResponse.StatusCode} code from indexer request: {message}");
+            }
+
+            if (!httpResponse.Headers.ContentType.Contains(HttpAccept.Json.Value))
+            {
+                throw new IndexerException(indexerResponse, $"Unexpected response header {httpResponse.Headers.ContentType} from indexer request, expected {HttpAccept.Json.Value}");
+            }
+
+            var releaseInfos = new List<ReleaseInfo>();
+            var releaseTypes = _settings.ReleaseTypes.Select(ReleaseTypeName).ToList();
+            var jsonResponse = STJson.Deserialize<TorrentSyndikatResponse>(httpResponse.ResponseData);
+
+            foreach (var item in jsonResponse.Data)
+            {
+                // Skip single malformed rows instead of failing the whole page
+                if (!STJson.TryDeserialize<TorrentSyndikatTorrent>(item.GetRawText(), out var row))
+                {
+                    _logger.Warn("Skipping release that could not be parsed: {0}", item.GetRawText());
+                    continue;
+                }
+
+                if (releaseTypes.Any() && !releaseTypes.Contains(row.ReleaseType))
+                {
+                    continue;
+                }
+
+                var details = $"{_settings.BaseUrl}details.php?id={row.Id}";
 
                 var release = new TorrentInfo
                 {
@@ -240,68 +341,50 @@ namespace NzbDrone.Core.Indexers.Definitions
                     UploadVolumeFactor = 1,
                     Guid = details,
                     InfoUrl = details,
-                    DownloadUrl = _settings.BaseUrl + "download.php?id=" + id + "&apikey=" + _settings.ApiKey,
-                    Title = row.Value<string>("name"),
-                    Categories = _categories.MapTrackerCatToNewznab(row.Value<int>("category").ToString()),
-                    PublishDate = dateTime.AddSeconds(row.Value<long>("added")).ToLocalTime(),
-                    Size = row.Value<long>("size"),
-                    Files = row.Value<int>("numfiles"),
-                    Seeders = seeders,
-                    Peers = seeders + row.Value<int>("leechers"),
-                    Grabs = row.Value<int>("snatched"),
-                    ImdbId = row.Value<int?>("imdbId").GetValueOrDefault(),
-                    TvdbId = row.Value<int?>("tvdbId").GetValueOrDefault(),
-                    TmdbId = row.Value<int?>("tmdbId").GetValueOrDefault()
+                    DownloadUrl = $"{_settings.BaseUrl.TrimEnd('/')}/api_9djWe8Tb2NE3p6opyqnh/v2/torrents/download.php?id={row.Id}&apiKey={_settings.ApiKey}",
+                    Title = row.Name,
+                    Categories = ParseCategories(row),
+                    PublishDate = DateTimeUtil.UnixTimestampToDateTime(row.Added),
+                    Size = row.Size,
+                    Files = row.Files,
+                    Seeders = row.Seeders,
+                    Peers = row.Seeders,
+                    Grabs = row.Downloads,
+                    Genres = row.Genres?.Select(g => g.Name).ToList() ?? new List<string>(),
+                    IndexerFlags = row.ReleaseType == "scene" ? new HashSet<IndexerFlag> { IndexerFlag.Scene } : new HashSet<IndexerFlag>()
                 };
 
-                var poster = row.Value<string>("poster");
-                if (!string.IsNullOrWhiteSpace(poster))
-                {
-                    release.PosterUrl = _settings.BaseUrl + poster.Substring(1);
-                }
-
                 var descriptions = new List<string>();
-                var title = row.Value<string>("title");
-                var titleOrigin = row.Value<string>("title_origin");
-                var year = row.Value<int?>("year");
-                var pid = row.Value<int?>("pid");
-                var releaseType = row.Value<string>("release_type");
-                var tags = row.Value<JArray>("tags");
-                var genres = row.Value<JArray>("genres");
 
-                if (!string.IsNullOrWhiteSpace(title))
+                if (row.Product != null)
                 {
-                    descriptions.Add("Title: " + title);
+                    release.ImdbId = row.Product.ImdbId.GetValueOrDefault();
+                    release.TmdbId = row.Product.TmdbId.GetValueOrDefault();
+                    release.TvdbId = row.Product.TvdbId.GetValueOrDefault();
+                    release.TvMazeId = row.Product.TvmazeId.GetValueOrDefault();
+                    release.Year = row.Product.Year.GetValueOrDefault();
+
+                    if (row.Product.Title.IsNotNullOrWhiteSpace())
+                    {
+                        descriptions.Add("Title: " + row.Product.Title);
+                    }
+
+                    if (row.Product.TitleOrigin.IsNotNullOrWhiteSpace())
+                    {
+                        descriptions.Add("Original Title: " + row.Product.TitleOrigin);
+                    }
+
+                    descriptions.Add($"Product-Link: {_settings.BaseUrl}product.php?pid={row.Product.Pid}");
                 }
 
-                if (!string.IsNullOrWhiteSpace(titleOrigin))
+                if (row.Tags is { Count: > 0 })
                 {
-                    descriptions.Add("Original Title: " + titleOrigin);
+                    descriptions.Add("Tags: " + string.Join(", ", row.Tags));
                 }
 
-                if (year > 0)
+                if (row.ReleaseType.IsNotNullOrWhiteSpace())
                 {
-                    descriptions.Add("Year: " + year);
-                }
-
-                if (pid > 0)
-                {
-                    descriptions.Add("Product-Link: " + _settings.BaseUrl + "product.php?pid=" + pid);
-                }
-
-                if (genres != null && genres.Any())
-                {
-                    descriptions.Add("Genres: " + string.Join(", ", genres));
-                }
-
-                if (tags != null && tags.Any())
-                {
-                    descriptions.Add("Tags: " + string.Join(", ", tags));
-                }
-
-                if (!string.IsNullOrWhiteSpace(releaseType))
-                {
-                    descriptions.Add("Release Type: " + releaseType);
+                    descriptions.Add("Release Type: " + row.ReleaseType);
                 }
 
                 if (descriptions.Any())
@@ -309,10 +392,50 @@ namespace NzbDrone.Core.Indexers.Definitions
                     release.Description = string.Join(Environment.NewLine, descriptions);
                 }
 
-                torrentInfos.Add(release);
+                releaseInfos.Add(release);
             }
 
-            return torrentInfos.ToArray();
+            return releaseInfos.ToArray();
+        }
+
+        private List<IndexerCategory> ParseCategories(TorrentSyndikatTorrent row)
+        {
+            var trackerCat = $"{row.Cat}/{row.SubCat}";
+            var categories = _categories.MapTrackerCatToNewznab(trackerCat).ToList();
+            var tags = row.Tags ?? new List<string>();
+
+            string variant = null;
+            if (row.IsForeign == true)
+            {
+                variant = "foreign";
+            }
+            else if (tags.Contains("2160p") || tags.Contains("4320p"))
+            {
+                variant = "uhd";
+            }
+            else if (tags.Contains("1080p") || tags.Contains("1080i") || tags.Contains("720p"))
+            {
+                variant = "hd";
+            }
+            else if (tags.Contains("sd"))
+            {
+                variant = "sd";
+            }
+            else if (tags.Contains("flac"))
+            {
+                variant = "flac";
+            }
+            else if (tags.Contains("mp3"))
+            {
+                variant = "mp3";
+            }
+
+            if (variant != null)
+            {
+                categories.AddRange(_categories.MapTrackerCatToNewznab($"{trackerCat}/{variant}"));
+            }
+
+            return categories;
         }
 
         public Action<IDictionary<string, string>, DateTime?> CookiesUpdater { get; set; }
@@ -339,10 +462,7 @@ namespace NzbDrone.Core.Indexers.Definitions
         [FieldDefinition(2, Label = "ApiKey", Privacy = PrivacyLevel.ApiKey, HelpText = "IndexerTorrentSyndikatSettingsApiKeyHelpText")]
         public string ApiKey { get; set; }
 
-        [FieldDefinition(3, Label = "Products Only", Type = FieldType.Checkbox, HelpText = "Limit search to torrents linked to a product")]
-        public bool ProductsOnly { get; set; }
-
-        [FieldDefinition(4, Label = "Release Types", Type = FieldType.Select, SelectOptions = typeof(TorrentSyndikatReleaseTypes))]
+        [FieldDefinition(3, Label = "Release Types", Type = FieldType.Select, SelectOptions = typeof(TorrentSyndikatReleaseTypes))]
         public IEnumerable<int> ReleaseTypes { get; set; }
 
         public override NzbDroneValidationResult Validate()
@@ -359,5 +479,50 @@ namespace NzbDrone.Core.Indexers.Definitions
         Scene = 2,
         [FieldOption]
         O_Scene = 3
+    }
+
+    internal class TorrentSyndikatResponse
+    {
+        public IReadOnlyCollection<JsonElement> Data { get; init; }
+    }
+
+    internal class TorrentSyndikatErrorResponse
+    {
+        public string Msg { get; init; }
+    }
+
+    internal class TorrentSyndikatTorrent
+    {
+        public int Id { get; init; }
+        public string Name { get; init; }
+        public long Added { get; init; }
+        public bool? IsForeign { get; init; }
+        public long Size { get; init; }
+        public string Cat { get; init; }
+        public string SubCat { get; init; }
+        public int? Files { get; init; }
+        public int? Downloads { get; init; }
+        public int? Seeders { get; init; }
+        public string ReleaseType { get; init; }
+        public IReadOnlyCollection<TorrentSyndikatGenre> Genres { get; init; }
+        public List<string> Tags { get; init; }
+        public TorrentSyndikatProduct Product { get; init; }
+    }
+
+    internal class TorrentSyndikatGenre
+    {
+        public string Name { get; init; }
+    }
+
+    internal class TorrentSyndikatProduct
+    {
+        public int Pid { get; init; }
+        public string Title { get; init; }
+        public string TitleOrigin { get; init; }
+        public int? Year { get; init; }
+        public int? ImdbId { get; init; }
+        public int? TmdbId { get; init; }
+        public int? TvdbId { get; init; }
+        public int? TvmazeId { get; init; }
     }
 }

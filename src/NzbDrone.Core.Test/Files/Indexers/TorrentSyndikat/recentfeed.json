@@ -1,0 +1,1549 @@
+{
+  "totalResults": 29,
+  "maxResults": 29,
+  "perPage": 30,
+  "nextPageId": 0,
+  "data": [
+    {
+      "id": 3851193,
+      "name": "Mr.Filyp-ABEILLE_THEORY-WEB-FR-2026-OND",
+      "added": 1795562167,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 68801489,
+      "cat": "audio",
+      "subCat": "amusic",
+      "files": 15,
+      "downloads": 0,
+      "seeders": 0,
+      "releaseType": "oscene",
+      "pretime": 1795562136,
+      "grpname": "OND",
+      "genres": [
+        {
+          "id": 222,
+          "name": "Rap"
+        }
+      ],
+      "tags": [
+        "mp3",
+        "web",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3851191,
+      "name": "The_Rolling_Stones-Out_Of_Control-PROMO-CDS-FLAC-1998-MAHOU",
+      "added": 1795561852,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 62582926,
+      "cat": "audio",
+      "subCat": "amusic",
+      "files": 6,
+      "downloads": 0,
+      "seeders": 1,
+      "releaseType": "oscene",
+      "pretime": 1795561841,
+      "grpname": "MAHOU",
+      "genres": [
+        {
+          "id": 230,
+          "name": "Rock"
+        }
+      ],
+      "tags": [
+        "flac",
+        "web",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3851181,
+      "name": "Pointdev.Ideal.Administration.v27.0.1.x64.German.Incl.Keymaker-CORE",
+      "added": 1795560539,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 175242348,
+      "cat": "apps",
+      "subCat": "awindows",
+      "files": 3,
+      "downloads": 4,
+      "seeders": 5,
+      "releaseType": "scene",
+      "pretime": 1795560527,
+      "grpname": "CORE",
+      "genres": null,
+      "tags": [
+        "x86_64"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3851177,
+      "name": "Germany.Shore.2021.S06E01.German.EAC3.1080p.AMZN.WEB.H264-AR0NA",
+      "added": 1795560263,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 4843354381,
+      "cat": "video",
+      "subCat": "series",
+      "files": 2,
+      "downloads": 10,
+      "seeders": 11,
+      "releaseType": "p2p",
+      "pretime": 0,
+      "grpname": "AR0NA",
+      "genres": [
+        {
+          "id": 33,
+          "name": "Reality"
+        }
+      ],
+      "tags": [
+        "1080p",
+        "untouched",
+        "web",
+        "avc",
+        "sdr",
+        "sl",
+        "eac3",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 52005,
+        "titleOrigin": "Germany Shore",
+        "title": null,
+        "productType": "series",
+        "year": 2021,
+        "endYear": 0,
+        "rating": 4.5,
+        "votes": 72,
+        "imdbId": 24851318,
+        "tmdbId": 153246,
+        "tvdbId": 413246,
+        "tvmazeId": null,
+        "igdbId": null,
+        "steamId": null,
+        "genres": [
+          {
+            "id": 33,
+            "name": "Reality"
+          }
+        ],
+        "certification": "na"
+      },
+      "release": {
+        "id": 876898,
+        "isLinked": false,
+        "isNuked": false,
+        "hasInfo": false
+      }
+    },
+    {
+      "id": 3851163,
+      "name": "The.Greatest.Penguin.Heist.of.All.Time.Update.v20261122-TENOKE",
+      "added": 1795558307,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 844087602,
+      "cat": "games",
+      "subCat": "gwindows",
+      "files": 19,
+      "downloads": 3,
+      "seeders": 4,
+      "releaseType": "oscene",
+      "pretime": 1795558206,
+      "grpname": "TENOKE",
+      "genres": [
+        {
+          "id": 66,
+          "name": "Adventure"
+        },
+        {
+          "id": 67,
+          "name": "Indie"
+        }
+      ],
+      "tags": [
+        "pc",
+        "update"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 95394,
+        "titleOrigin": "The Greatest Penguin Heist of All Time",
+        "title": null,
+        "productType": "game",
+        "year": 2026,
+        "endYear": null,
+        "rating": 0,
+        "votes": 0,
+        "imdbId": null,
+        "tmdbId": null,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": 154732,
+        "steamId": 1451480,
+        "genres": [
+          {
+            "id": 66,
+            "name": "Adventure"
+          },
+          {
+            "id": 67,
+            "name": "Indie"
+          }
+        ],
+        "certification": "na"
+      },
+      "release": null
+    },
+    {
+      "id": 3851155,
+      "name": "UFC.334.Gane.vs.Hokit.Early.Prelims.1080p.WEB.h264-VERUM",
+      "added": 1795557550,
+      "isPack": 0,
+      "isForeign": 1,
+      "size": 4424803823,
+      "cat": "video",
+      "subCat": "sports",
+      "files": 2,
+      "downloads": 0,
+      "seeders": 1,
+      "releaseType": "scene",
+      "pretime": 1795515792,
+      "grpname": "VERUM",
+      "genres": [
+        {
+          "id": 37,
+          "name": "Sport"
+        }
+      ],
+      "tags": [
+        "1080p",
+        "untouched",
+        "web",
+        "avc",
+        "sdr",
+        "aac",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 16697,
+        "titleOrigin": "UFC",
+        "title": "Ultimate Fighting Championship",
+        "productType": "series",
+        "year": 1993,
+        "endYear": 0,
+        "rating": 0,
+        "votes": 0,
+        "imdbId": null,
+        "tmdbId": null,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": null,
+        "steamId": null,
+        "genres": [
+          {
+            "id": 37,
+            "name": "Sport"
+          }
+        ],
+        "certification": "na"
+      },
+      "release": null
+    },
+    {
+      "id": 3851142,
+      "name": "Laura.Cox.Trouble.Coming.to.Paris.Live.at.the.Trianon.2026.1080p.MBLURAY.x264-DEV0",
+      "added": 1795556447,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 7945161996,
+      "cat": "video",
+      "subCat": "vmusic",
+      "files": 2,
+      "downloads": 0,
+      "seeders": 1,
+      "releaseType": "scene",
+      "pretime": 1795556369,
+      "grpname": "DEV0",
+      "genres": null,
+      "tags": [
+        "1080p",
+        "encode",
+        "bd",
+        "avc",
+        "sdr",
+        "sl",
+        "flac",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3851122,
+      "name": "AI.War.2.Forge.Of.Titans.MacOS-I_KnoW",
+      "added": 1795555193,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 8072322226,
+      "cat": "games",
+      "subCat": "gmacos",
+      "files": 56,
+      "downloads": 1,
+      "seeders": 2,
+      "releaseType": "oscene",
+      "pretime": 1795554824,
+      "grpname": "I_KnoW",
+      "genres": [
+        {
+          "id": 56,
+          "name": "Real Time Strategy (RTS)"
+        },
+        {
+          "id": 58,
+          "name": "Simulator"
+        },
+        {
+          "id": 60,
+          "name": "Strategy"
+        },
+        {
+          "id": 67,
+          "name": "Indie"
+        }
+      ],
+      "tags": [
+        "pc",
+        "game"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 36901,
+        "titleOrigin": "AI War 2",
+        "title": null,
+        "productType": "game",
+        "year": 2019,
+        "endYear": 0,
+        "rating": 0,
+        "votes": 0,
+        "imdbId": 13978204,
+        "tmdbId": null,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": 25648,
+        "steamId": 573410,
+        "genres": [
+          {
+            "id": 56,
+            "name": "Real Time Strategy (RTS)"
+          },
+          {
+            "id": 58,
+            "name": "Simulator"
+          },
+          {
+            "id": 60,
+            "name": "Strategy"
+          },
+          {
+            "id": 67,
+            "name": "Indie"
+          }
+        ],
+        "certification": "na"
+      },
+      "release": null
+    },
+    {
+      "id": 3851118,
+      "name": "AI.War.2.Forge.Of.Titans.Linux-I_KnoW",
+      "added": 1795554804,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 8057724127,
+      "cat": "games",
+      "subCat": "glinux",
+      "files": 56,
+      "downloads": 1,
+      "seeders": 2,
+      "releaseType": "oscene",
+      "pretime": 1795554673,
+      "grpname": "I_KnoW",
+      "genres": [
+        {
+          "id": 56,
+          "name": "Real Time Strategy (RTS)"
+        },
+        {
+          "id": 58,
+          "name": "Simulator"
+        },
+        {
+          "id": 60,
+          "name": "Strategy"
+        },
+        {
+          "id": 67,
+          "name": "Indie"
+        }
+      ],
+      "tags": [
+        "pc",
+        "game"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 36901,
+        "titleOrigin": "AI War 2",
+        "title": null,
+        "productType": "game",
+        "year": 2019,
+        "endYear": 0,
+        "rating": 0,
+        "votes": 0,
+        "imdbId": 13978204,
+        "tmdbId": null,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": 25648,
+        "steamId": 573410,
+        "genres": [
+          {
+            "id": 56,
+            "name": "Real Time Strategy (RTS)"
+          },
+          {
+            "id": 58,
+            "name": "Simulator"
+          },
+          {
+            "id": 60,
+            "name": "Strategy"
+          },
+          {
+            "id": 67,
+            "name": "Indie"
+          }
+        ],
+        "certification": "na"
+      },
+      "release": null
+    },
+    {
+      "id": 3851111,
+      "name": "Three.Miles.North.of.Molkom.2008.DVDRiP.x264-agw",
+      "added": 1795553801,
+      "isPack": 0,
+      "isForeign": 1,
+      "size": 1604990497,
+      "cat": "video",
+      "subCat": "movie",
+      "files": 2,
+      "downloads": 0,
+      "seeders": 1,
+      "releaseType": "scene",
+      "pretime": 1501505151,
+      "grpname": "agw",
+      "genres": [
+        {
+          "id": 10,
+          "name": "Documentary"
+        }
+      ],
+      "tags": [
+        "sd",
+        "encode",
+        "dvd",
+        "avc",
+        "sdr",
+        "sl",
+        "aac",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 98850,
+        "titleOrigin": "Three Miles North of Molkom",
+        "title": null,
+        "productType": "movie",
+        "year": 2008,
+        "endYear": null,
+        "rating": 6.4,
+        "votes": 563,
+        "imdbId": 1173922,
+        "tmdbId": 74128,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": null,
+        "steamId": null,
+        "genres": [
+          {
+            "id": 10,
+            "name": "Documentary"
+          }
+        ],
+        "certification": "na"
+      },
+      "release": null
+    },
+    {
+      "id": 3851097,
+      "name": "Spider-Man.Brand.New.Day.2026.German.DL.2160p.UHD.BluRay.x265-NEXUS",
+      "added": 1795552814,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 34138685807,
+      "cat": "video",
+      "subCat": "movie",
+      "files": 2,
+      "downloads": 20,
+      "seeders": 20,
+      "releaseType": "p2p",
+      "pretime": 0,
+      "grpname": "NEXUS",
+      "genres": [
+        {
+          "id": 1,
+          "name": "Action"
+        },
+        {
+          "id": 3,
+          "name": "Adventure"
+        },
+        {
+          "id": 14,
+          "name": "Fantasy"
+        },
+        {
+          "id": 40,
+          "name": "Science Fiction"
+        }
+      ],
+      "tags": [
+        "2160p",
+        "encode",
+        "uhdbd",
+        "hevc",
+        "dvhdr10",
+        "dl",
+        "eac3",
+        "truehd",
+        "ac3",
+        "atmos",
+        "c6",
+        "c8"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 84271,
+        "titleOrigin": "Spider-Man - Brand New Day",
+        "title": "",
+        "productType": "movie",
+        "year": 2026,
+        "endYear": null,
+        "rating": 7.9,
+        "votes": 393764,
+        "imdbId": 22084616,
+        "tmdbId": 969681,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": null,
+        "steamId": null,
+        "genres": [
+          {
+            "id": 1,
+            "name": "Action"
+          },
+          {
+            "id": 3,
+            "name": "Adventure"
+          },
+          {
+            "id": 14,
+            "name": "Fantasy"
+          },
+          {
+            "id": 40,
+            "name": "Science Fiction"
+          }
+        ],
+        "certification": 12
+      },
+      "release": {
+        "id": 876892,
+        "isLinked": false,
+        "isNuked": false,
+        "hasInfo": false
+      }
+    },
+    {
+      "id": 3851090,
+      "name": "Volker_Kutscher-(Bergische_Krimis_02)-Vater_Unser-ABOOK-WEB-DE-2026-SPOKEN",
+      "added": 1795551789,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 615794751,
+      "cat": "audio",
+      "subCat": "audiobook",
+      "files": 33,
+      "downloads": 1,
+      "seeders": 2,
+      "releaseType": "oscene",
+      "pretime": 1795551772,
+      "grpname": "SPOKEN",
+      "genres": null,
+      "tags": [
+        "mp3",
+        "web",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3851064,
+      "name": "The.Detective.Is.Already.Dead.S01E12.Die.drei.gleissenden.Jahre.die.ich.mit.dir.verbracht.habe.waren.GERMAN.ANiME.WEB.H264-GERTv",
+      "added": 1795549498,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 387803745,
+      "cat": "video",
+      "subCat": "series",
+      "files": 2,
+      "downloads": 2,
+      "seeders": 3,
+      "releaseType": "scene",
+      "pretime": 1795549496,
+      "grpname": "GERTv",
+      "genres": [
+        {
+          "id": 1,
+          "name": "Action"
+        },
+        {
+          "id": 4,
+          "name": "Animation"
+        },
+        {
+          "id": 5,
+          "name": "Anime"
+        },
+        {
+          "id": 8,
+          "name": "Comedy"
+        },
+        {
+          "id": 11,
+          "name": "Drama"
+        },
+        {
+          "id": 14,
+          "name": "Fantasy"
+        },
+        {
+          "id": 29,
+          "name": "Mystery"
+        },
+        {
+          "id": 34,
+          "name": "Romance"
+        },
+        {
+          "id": 43,
+          "name": "Thriller"
+        }
+      ],
+      "tags": [
+        "sd",
+        "untouched",
+        "web",
+        "avc",
+        "sdr",
+        "sl",
+        "aac",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 62555,
+        "titleOrigin": "The Detective Is Already Dead",
+        "title": null,
+        "productType": "series",
+        "year": 2021,
+        "endYear": 0,
+        "rating": 6.1,
+        "votes": 2294,
+        "imdbId": 13884052,
+        "tmdbId": 117061,
+        "tvdbId": 397197,
+        "tvmazeId": 55377,
+        "igdbId": null,
+        "steamId": null,
+        "genres": [
+          {
+            "id": 1,
+            "name": "Action"
+          },
+          {
+            "id": 4,
+            "name": "Animation"
+          },
+          {
+            "id": 5,
+            "name": "Anime"
+          },
+          {
+            "id": 8,
+            "name": "Comedy"
+          },
+          {
+            "id": 11,
+            "name": "Drama"
+          },
+          {
+            "id": 14,
+            "name": "Fantasy"
+          },
+          {
+            "id": 29,
+            "name": "Mystery"
+          },
+          {
+            "id": 34,
+            "name": "Romance"
+          },
+          {
+            "id": 43,
+            "name": "Thriller"
+          }
+        ],
+        "certification": "na"
+      },
+      "release": null
+    },
+    {
+      "id": 3851046,
+      "name": "Wobbly_Life_Update_v1.2.0.0_NSW-VENOM",
+      "added": 1795548247,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 2426305610,
+      "cat": "games",
+      "subCat": "nintendo",
+      "files": 27,
+      "downloads": 5,
+      "seeders": 6,
+      "releaseType": "oscene",
+      "pretime": 1795548201,
+      "grpname": "VENOM",
+      "genres": [
+        {
+          "id": 54,
+          "name": "Puzzle"
+        },
+        {
+          "id": 57,
+          "name": "Role-playing (RPG)"
+        },
+        {
+          "id": 58,
+          "name": "Simulator"
+        },
+        {
+          "id": 66,
+          "name": "Adventure"
+        },
+        {
+          "id": 67,
+          "name": "Indie"
+        }
+      ],
+      "tags": [
+        "nsw",
+        "update"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 86421,
+        "titleOrigin": "Wobbly Life",
+        "title": null,
+        "productType": "game",
+        "year": 2025,
+        "endYear": null,
+        "rating": 0,
+        "votes": 0,
+        "imdbId": null,
+        "tmdbId": null,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": 133344,
+        "steamId": 1211020,
+        "genres": [
+          {
+            "id": 54,
+            "name": "Puzzle"
+          },
+          {
+            "id": 57,
+            "name": "Role-playing (RPG)"
+          },
+          {
+            "id": 58,
+            "name": "Simulator"
+          },
+          {
+            "id": 66,
+            "name": "Adventure"
+          },
+          {
+            "id": 67,
+            "name": "Indie"
+          }
+        ],
+        "certification": "na"
+      },
+      "release": null
+    },
+    {
+      "id": 3851030,
+      "name": "Dig.2026.S01E06.REPACK.720p.WEB.H264-iNSiDiOUS",
+      "added": 1795546588,
+      "isPack": 0,
+      "isForeign": 1,
+      "size": 708452886,
+      "cat": "video",
+      "subCat": "series",
+      "files": 2,
+      "downloads": 0,
+      "seeders": 1,
+      "releaseType": "scene",
+      "pretime": 1795546345,
+      "grpname": "iNSiDiOUS",
+      "genres": [
+        {
+          "id": 3,
+          "name": "Adventure"
+        },
+        {
+          "id": 8,
+          "name": "Comedy"
+        },
+        {
+          "id": 29,
+          "name": "Mystery"
+        }
+      ],
+      "tags": [
+        "720p",
+        "untouched",
+        "web",
+        "avc",
+        "sdr",
+        "sl",
+        "eac3",
+        "atmos",
+        "c6"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 92799,
+        "titleOrigin": "Dig",
+        "title": "",
+        "productType": "series",
+        "year": 2026,
+        "endYear": null,
+        "rating": 0,
+        "votes": 0,
+        "imdbId": 36843594,
+        "tmdbId": 290826,
+        "tvdbId": 463422,
+        "tvmazeId": 84536,
+        "igdbId": null,
+        "steamId": null,
+        "genres": [
+          {
+            "id": 3,
+            "name": "Adventure"
+          },
+          {
+            "id": 8,
+            "name": "Comedy"
+          },
+          {
+            "id": 29,
+            "name": "Mystery"
+          }
+        ],
+        "certification": "na"
+      },
+      "release": {
+        "id": 876873,
+        "isLinked": true,
+        "isNuked": false,
+        "hasInfo": false
+      }
+    },
+    {
+      "id": 3850809,
+      "name": "City.Wolf.1986.GERMAN.DL.1080P.WEB.H264-GOREHOUNDS",
+      "added": 1795536347,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 7925320394,
+      "cat": "video",
+      "subCat": "movie",
+      "files": 2,
+      "downloads": 11,
+      "seeders": 11,
+      "releaseType": "scene",
+      "pretime": 1795536083,
+      "grpname": "GOREHOUNDS",
+      "genres": [
+        {
+          "id": 1,
+          "name": "Action"
+        },
+        {
+          "id": 9,
+          "name": "Crime"
+        },
+        {
+          "id": 11,
+          "name": "Drama"
+        },
+        {
+          "id": 43,
+          "name": "Thriller"
+        }
+      ],
+      "tags": [
+        "1080p",
+        "untouched",
+        "web",
+        "avc",
+        "sdr",
+        "dl",
+        "eac3",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 31374,
+        "titleOrigin": "A Better Tomorrow",
+        "title": "City Wolf - A Better Tomorrow",
+        "productType": "movie",
+        "year": 1986,
+        "endYear": 0,
+        "rating": 7.4,
+        "votes": 29997,
+        "imdbId": 92263,
+        "tmdbId": 11471,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": null,
+        "steamId": null,
+        "genres": [
+          {
+            "id": 1,
+            "name": "Action"
+          },
+          {
+            "id": 9,
+            "name": "Crime"
+          },
+          {
+            "id": 11,
+            "name": "Drama"
+          },
+          {
+            "id": 43,
+            "name": "Thriller"
+          }
+        ],
+        "certification": 18
+      },
+      "release": null
+    },
+    {
+      "id": 3850793,
+      "name": "aktien.Magazin.No.42.2026.GERMAN.HYBRID.MAGAZINE.eBook-LORENZ",
+      "added": 1795534539,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 82752649,
+      "cat": "ebook",
+      "subCat": "magazine",
+      "files": 2,
+      "downloads": 3,
+      "seeders": 4,
+      "releaseType": "scene",
+      "pretime": 1795534532,
+      "grpname": "LORENZ",
+      "genres": null,
+      "tags": [
+        "hybrid",
+        "pdf"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3850669,
+      "name": "Junk.Films.2007.German.DL.FS.DOKU.BDRip.X264-GWD",
+      "added": 1795523822,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 1605041241,
+      "cat": "video",
+      "subCat": "movie",
+      "files": 8,
+      "downloads": 2,
+      "seeders": 3,
+      "releaseType": "scene",
+      "pretime": 1795523790,
+      "grpname": "GWD",
+      "genres": [
+        {
+          "id": 10,
+          "name": "Documentary"
+        }
+      ],
+      "tags": [
+        "sd",
+        "encode",
+        "bd",
+        "avc",
+        "sdr",
+        "dl",
+        "ac3",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 98845,
+        "titleOrigin": "Junk Films: The Collected Short Shockumentaries of Tsurisaki Kiyotaka",
+        "title": "Junk Films",
+        "productType": "movie",
+        "year": 2007,
+        "endYear": null,
+        "rating": 4.7,
+        "votes": 160,
+        "imdbId": 7424106,
+        "tmdbId": 244194,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": null,
+        "steamId": null,
+        "genres": [
+          {
+            "id": 10,
+            "name": "Documentary"
+          }
+        ],
+        "certification": 18
+      },
+      "release": null
+    },
+    {
+      "id": 3848076,
+      "name": "Paradigma.Software.Valentina.Studio.Pro.v18.4.2.Linux.Debian.ARM64.Incl.Keymaker-CORE",
+      "added": 1795302107,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 100844282,
+      "cat": "apps",
+      "subCat": "alinux",
+      "files": 3,
+      "downloads": 2,
+      "seeders": 3,
+      "releaseType": "scene",
+      "pretime": 1795302079,
+      "grpname": "CORE",
+      "genres": null,
+      "tags": [
+        "arm64"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3846848,
+      "name": "Michael.Pollan.Eine.Welt.erscheint.2026.German.Retail.EPUB.eBook-CLG",
+      "added": 1795179533,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 610482,
+      "cat": "ebook",
+      "subCat": "nfiction",
+      "files": 1,
+      "downloads": 7,
+      "seeders": 7,
+      "releaseType": "p2p",
+      "pretime": 0,
+      "grpname": "CLG",
+      "genres": null,
+      "tags": [
+        "retail",
+        "epub"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": {
+        "id": 875836,
+        "isLinked": false,
+        "isNuked": false,
+        "hasInfo": false
+      }
+    },
+    {
+      "id": 3838484,
+      "name": "iZotope.Ozone.Advanced.v12.1.0.macOS-TSiNT",
+      "added": 1794500454,
+      "isPack": 0,
+      "isForeign": 1,
+      "size": 3849375355,
+      "cat": "apps",
+      "subCat": "amacos",
+      "files": 2,
+      "downloads": 3,
+      "seeders": 3,
+      "releaseType": "p2p",
+      "pretime": 0,
+      "grpname": "TSiNT",
+      "genres": null,
+      "tags": [
+        "x86_64"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3835149,
+      "name": "Alerion.Alina.-.Carnival.of.Twisted.Shadows.You.can.run.but.you.cant.hide.2026.GERMAN.RETAIL.EPUB.eBook-FDOE",
+      "added": 1794287179,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 429076,
+      "cat": "ebook",
+      "subCat": "novel",
+      "files": 2,
+      "downloads": 7,
+      "seeders": 7,
+      "releaseType": "p2p",
+      "pretime": 0,
+      "grpname": "FDOE",
+      "genres": null,
+      "tags": [
+        "retail",
+        "epub"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": {
+        "id": 873750,
+        "isLinked": false,
+        "isNuked": false,
+        "hasInfo": false
+      }
+    },
+    {
+      "id": 3816723,
+      "name": "Planet.Zoo.Ultimate.Edition.2024.v1.9.2.ML.PS5-TSiNT",
+      "added": 1792854167,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 18622324196,
+      "cat": "games",
+      "subCat": "playstation",
+      "files": 33,
+      "downloads": 3,
+      "seeders": 2,
+      "releaseType": "p2p",
+      "pretime": 0,
+      "grpname": "TSiNT",
+      "genres": [
+        {
+          "id": 58,
+          "name": "Simulator"
+        },
+        {
+          "id": 60,
+          "name": "Strategy"
+        }
+      ],
+      "tags": [
+        "ps5",
+        "game"
+      ],
+      "hasDescription": true,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 35384,
+        "titleOrigin": "Planet Zoo",
+        "title": null,
+        "productType": "game",
+        "year": 2019,
+        "endYear": 0,
+        "rating": 0,
+        "votes": 0,
+        "imdbId": null,
+        "tmdbId": null,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": 117717,
+        "steamId": 703080,
+        "genres": [
+          {
+            "id": 58,
+            "name": "Simulator"
+          },
+          {
+            "id": 60,
+            "name": "Strategy"
+          }
+        ],
+        "certification": "na"
+      },
+      "release": {
+        "id": 869931,
+        "isLinked": false,
+        "isNuked": false,
+        "hasInfo": false
+      }
+    },
+    {
+      "id": 3795177,
+      "name": "Sygic.GPS.Navigation.v26.5.4.ANDROiD-rGPDA",
+      "added": 1791178535,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 115734976,
+      "cat": "misc",
+      "subCat": "misc",
+      "files": 2,
+      "downloads": 3,
+      "seeders": 1,
+      "releaseType": "scene",
+      "pretime": 1791050226,
+      "grpname": "rGPDA",
+      "genres": null,
+      "tags": null,
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3758974,
+      "name": "Stern.Investigativ.Der.Untergang.der.Sea.Story.2026.06.12.German.AAC.WEB.PODCAST-TSiNT",
+      "added": 1788173497,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 280917853,
+      "cat": "audio",
+      "subCat": "podcast",
+      "files": 1,
+      "downloads": 2,
+      "seeders": 3,
+      "releaseType": "p2p",
+      "pretime": 0,
+      "grpname": "TSiNT",
+      "genres": null,
+      "tags": [
+        "aac",
+        "web",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": {
+        "id": 858182,
+        "isLinked": false,
+        "isNuked": false,
+        "hasInfo": false
+      }
+    },
+    {
+      "id": 3750111,
+      "name": "Zuerichsee-Zeitung.Obersee.31.05.2018.GERMAN.RETAIL.eBook-LORENZ",
+      "added": 1787428854,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 31471353,
+      "cat": "ebook",
+      "subCat": "npaper",
+      "files": 2,
+      "downloads": 2,
+      "seeders": 2,
+      "releaseType": "scene",
+      "pretime": 1787428834,
+      "grpname": "LORENZ",
+      "genres": null,
+      "tags": [
+        "retail",
+        "pdf"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3677177,
+      "name": "Panini.Manga.-.Liebe.auf.der.Zungenspitze.Band.2.2025.German.Retail.Comic.eBook-BitBook",
+      "added": 1780437025,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 206824126,
+      "cat": "ebook",
+      "subCat": "comic",
+      "files": 2,
+      "downloads": 7,
+      "seeders": 1,
+      "releaseType": "scene",
+      "pretime": 1780436974,
+      "grpname": "BitBook",
+      "genres": null,
+      "tags": [
+        "retail",
+        "pdf"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3328283,
+      "name": "SIA.Scillarium.Studio.OTT.Navigator.v1.7.2.2.ML.Android.Cracked-TSiNT",
+      "added": 1753015736,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 24684362,
+      "cat": "misc",
+      "subCat": "grabbel",
+      "files": 1,
+      "downloads": 0,
+      "seeders": 21,
+      "releaseType": "p2p",
+      "pretime": 0,
+      "grpname": "TSiNT",
+      "genres": null,
+      "tags": null,
+      "hasDescription": true,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": null,
+      "release": null
+    },
+    {
+      "id": 3327237,
+      "name": "Burnout.Revenge.Pal.Multi9.XBOX360-RADIAN",
+      "added": 1752909973,
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 4050622441,
+      "cat": "games",
+      "subCat": "xbox",
+      "files": 2,
+      "downloads": 6,
+      "seeders": 2,
+      "releaseType": "scene",
+      "pretime": 1142466374,
+      "grpname": "RADIAN",
+      "genres": [
+        {
+          "id": 55,
+          "name": "Racing"
+        }
+      ],
+      "tags": [
+        "xbox360",
+        "game"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": false,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 64264,
+        "titleOrigin": "Burnout Revenge",
+        "title": null,
+        "productType": "game",
+        "year": 2005,
+        "endYear": 0,
+        "rating": 0,
+        "votes": 0,
+        "imdbId": null,
+        "tmdbId": null,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": 2626,
+        "steamId": null,
+        "genres": [
+          {
+            "id": 55,
+            "name": "Racing"
+          }
+        ],
+        "certification": 3
+      },
+      "release": null
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "totalResults": 2,
+  "maxResults": 2,
+  "perPage": 30,
+  "nextPageId": 0,
+  "data": [
+    {
+      "id": 3851177,
+      "name": "Germany.Shore.2021.S06E01.German.EAC3.1080p.AMZN.WEB.H264-AR0NA",
+      "added": 1795560263,
+      "isPack": 0,
+      "isForeign": null,
+      "size": 4843354381,
+      "cat": "video",
+      "subCat": "series",
+      "files": null,
+      "downloads": null,
+      "seeders": null,
+      "releaseType": "p2p",
+      "pretime": 0,
+      "grpname": "AR0NA",
+      "genres": null,
+      "tags": [
+        "1080p",
+        "untouched",
+        "web",
+        "avc",
+        "sdr",
+        "sl",
+        "eac3",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 52005,
+        "titleOrigin": "Germany Shore",
+        "title": null,
+        "productType": "series",
+        "year": null,
+        "endYear": 0,
+        "rating": 4.5,
+        "votes": 72,
+        "imdbId": 24851318,
+        "tmdbId": 153246,
+        "tvdbId": 413246,
+        "tvmazeId": null,
+        "igdbId": null,
+        "steamId": null,
+        "genres": [
+          {
+            "id": 33,
+            "name": "Reality"
+          }
+        ],
+        "certification": "na"
+      },
+      "release": {
+        "id": 876898,
+        "isLinked": false,
+        "isNuked": false,
+        "hasInfo": false
+      }
+    },
+    {
+      "id": 3850809,
+      "name": "City.Wolf.1986.GERMAN.DL.1080P.WEB.H264-GOREHOUNDS",
+      "added": "not a timestamp",
+      "isPack": 0,
+      "isForeign": 0,
+      "size": 7925320394,
+      "cat": "video",
+      "subCat": "movie",
+      "files": 2,
+      "downloads": 11,
+      "seeders": 11,
+      "releaseType": "scene",
+      "pretime": 1795536083,
+      "grpname": "GOREHOUNDS",
+      "genres": [
+        {
+          "id": 1,
+          "name": "Action"
+        },
+        {
+          "id": 9,
+          "name": "Crime"
+        },
+        {
+          "id": 11,
+          "name": "Drama"
+        },
+        {
+          "id": 43,
+          "name": "Thriller"
+        }
+      ],
+      "tags": [
+        "1080p",
+        "untouched",
+        "web",
+        "avc",
+        "sdr",
+        "dl",
+        "eac3",
+        "c2"
+      ],
+      "hasDescription": false,
+      "hasMediaInfo": true,
+      "hasIssues": false,
+      "isIncomplete": false,
+      "isTrumped": false,
+      "isDeprecated": false,
+      "product": {
+        "pid": 31374,
+        "titleOrigin": "A Better Tomorrow",
+        "title": "City Wolf - A Better Tomorrow",
+        "productType": "movie",
+        "year": 1986,
+        "endYear": 0,
+        "rating": 7.4,
+        "votes": 29997,
+        "imdbId": 92263,
+        "tmdbId": 11471,
+        "tvdbId": null,
+        "tvmazeId": null,
+        "igdbId": null,
+        "steamId": null,
+        "genres": [
+          {
+            "id": 1,
+            "name": "Action"
+          },
+          {
+            "id": 9,
+            "name": "Crime"
+          },
+          {
+            "id": 11,
+            "name": "Drama"
+          },
+          {
+            "id": 43,
+            "name": "Thriller"
+          }
+        ],
+        "certification": 18
+      },
+      "release": null
+    }
+  ]
+}
